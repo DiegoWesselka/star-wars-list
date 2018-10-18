@@ -1,0 +1,33 @@
+<div class="col-md-6">
+
+  <!-- Loading -->
+  <section *ngIf="isLoading && !errorMessage">
+    Loading...
+  </section>
+
+  <!-- List -->
+  <section *ngIf="peopleList" class='table-list'>
+    <h2>Star Wars</h2>
+    <p class="text-secondary">"Faça ou não faça. A tentativa não existe." - Yoda</p>
+
+    <table class="table table-hover table-striped table-md">
+      <tbody>
+        <tr *ngFor="let person of peopleList; let i = index">
+          <td (click)="onGridClick(person)">
+              {{person.name}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Navigation -->
+    <button type="button" [disabled]="!hasPrevious" class="btn btn-primary float-left" (click)="navigateToPrevious()">Anterior</button>
+    <button type="button" [disabled]="!hasNext" class="btn btn-primary float-right" (click)="navigateToNext()">Próxima</button>
+
+  </section>
+</div>
+
+<!-- Error message -->
+<section *ngIf="errorMessage">
+  {{errorMessage}}
+</section>
